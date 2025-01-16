@@ -3,7 +3,6 @@ use log::{SetLoggerError, LevelFilter};
 #[macro_use] extern crate log;
 extern crate simplelog;
 use simplelog::*;
-use tauri_plugin_log::{LogTarget};
 
 #[tauri::command]
 fn greet(name: &str) {
@@ -21,11 +20,6 @@ pub fn run() {
 
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![greet])
-        .plugin(tauri_plugin_log::Builder::default().targets([
-            LogTarget::LogDir,
-            LogTarget::Stdout,
-            LogTarget::Webview,
-        ]).build())
         .setup(|app| {
             let handle = app.handle().clone();
 
