@@ -16,7 +16,10 @@ pub fn run() {
 
             WebviewWindowBuilder::new(&handle, "main", WebviewUrl::App("".into()))
                 .initialization_script(r#"
-                    window.__TAURI_INTERNALS__.invoke("greet", {name: "script 1"}).then((res) => alert(res));
+                    window.__TAURI_INTERNALS__.invoke("greet", {name: "script 1"}).then((res) => {
+                        console.log(res);
+                        alert(res);
+                    });
                 "#)
                 .build()
                 .expect("error building webview window");
