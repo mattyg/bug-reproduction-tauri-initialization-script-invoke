@@ -2,6 +2,7 @@ use tauri::{WebviewWindowBuilder, WebviewUrl};
 
 #[tauri::command]
 fn greet(name: &str) -> String {
+    println!("Hello from {}", name);
     format!("Hello from {}", name)
 }
 
